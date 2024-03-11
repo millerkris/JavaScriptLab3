@@ -1,0 +1,12 @@
+function delay(n){
+  return new Promise(resolve => {
+    setTimeout(() =>{
+      resolve();
+    }, n*1000);
+  });
+}
+
+delay(5).then(()=>{
+  console.log("5 секунд");
+});
+console.log("Начало");
