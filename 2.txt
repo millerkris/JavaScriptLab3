@@ -10,3 +10,23 @@ delay(5).then(()=>{
   console.log("5 секунд");
 });
 console.log("Начало");
+
+
+
+
+function delay(n){
+  return new Promise(resolve => {
+    setTimeout(() =>{
+      resolve();
+    }, n*1000);
+  });
+}
+
+function countdown(n) {
+  console.log(n);
+  if (n > 0) {
+    return delay(1).then(() => countdown(n - 1));
+  }
+}
+
+countdown(5);
