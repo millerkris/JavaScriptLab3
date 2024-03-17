@@ -30,3 +30,33 @@ function countdown(n) {
 }
 
 countdown(5);
+
+
+
+
+
+async function getFirstRepositoryName(username) {
+    const userResponse = await fetch(`https://api.github.com/users/${username}`);
+    const userData = await userResponse.json();
+
+    const reposUrl = userData.repos_url;
+
+    const reposResponse = await fetch(reposUrl);
+    const reposData = await reposResponse.json();
+
+    if (reposData.length > 0) {
+        return reposData[0].name;
+    } else {
+        return "Репозитории не найдены";
+    }
+}
+
+
+const username = "millerkris";
+getFirstRepositoryName(username)
+    .then((repositoryName) => {
+        console.log(`Название первого репозитория: ${repositoryName}`);
+    })
+    .catch((error) => {
+        console.error("Ошибка:", error);
+    });
